@@ -13,6 +13,7 @@ class App extends Component {
         return (
             <div>
                 <Main />
+                <br/>
                 {this.props.children}
             </div>
 

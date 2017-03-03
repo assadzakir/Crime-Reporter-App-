@@ -89,6 +89,38 @@ class Navbar extends Component {
             </div>
         ) : mainMenu;
 
+
+        const adminMenu = auth.auth.user ? (
+                <div className='Navbar-Main-Menu'>
+                    <FlatButton
+                        label='ALL Complaint'
+                        style={buttonStyle}
+                        onClick={() => browserHistory.push('/complains')}
+                    />
+                    <FlatButton
+                        label='Crime'
+                        style={buttonStyle}
+                        onClick={() => browserHistory.push('/crime')}
+                    />
+                    <FlatButton
+                        label='Missing'
+                        style={buttonStyle}
+                        onClick={() => browserHistory.push('/missing-person')}
+                    />
+                    <FlatButton
+                        label='File Report'
+                        style={buttonStyle}
+                        onClick={() => browserHistory.push('/add-reports')}
+                    />
+                    <FlatButton
+                        label='LogOut'
+                        style={buttonStyle}
+                        onClick={this.handleLogin}
+                    />
+                </div>
+            ) : mainMenu;
+
+
         /* return (
          <AppBar
          title={
@@ -104,7 +136,7 @@ class Navbar extends Component {
         return (
             <div>
 
-                <AppBar title="crime-reporter-app" className='Navbar' showMenuIconButton={false} iconElementRight={rightMenu} />
+                <AppBar title="crime-reporter-app" className='Navbar' showMenuIconButton={false} iconElementRight={auth.auth.user && auth.auth.user.role == 'admin' ? adminMenu:rightMenu} />
 
             </div>
         )

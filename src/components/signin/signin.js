@@ -25,7 +25,7 @@ export default class signinForm extends Component {
 
         const handleSubmit = (e) => {
             e.preventDefault();
-            const {email, password, errors} = this.state;
+            const {email, password, errors} = this.state
 
             if (!email || !password) {
                 if (!email) errors.email = 'Email is Required'

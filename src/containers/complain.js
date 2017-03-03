@@ -8,7 +8,9 @@ import * as MUI from 'material-ui';
 import ActionInfo from 'material-ui/svg-icons/action/info';
 import Person from 'material-ui/svg-icons/social/person';
 import { browserHistory } from 'react-router';
-
+const buttonStyle = { width: '100%' , float:'right'};
+import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
+import FlatButton from 'material-ui/FlatButton';
 
 
  class Complain extends Component {
@@ -37,6 +39,18 @@ import { browserHistory } from 'react-router';
      }
 
     render() {
+
+        const mainMenu = (
+            <div className='Navbar-Main-Menu'>
+                <FlatButton
+                    label='submited'
+                    style={buttonStyle}
+                    onClick={() => browserHistory.push('/crime')}
+                />
+            </div>)
+
+
+
         return (
             <MUI.List >
                 <MUI.Subheader style={styles.subHeader} inset={false}>Complain List</MUI.Subheader>
@@ -48,7 +62,7 @@ import { browserHistory } from 'react-router';
 
                                 <MUI.ListItem
                                     leftAvatar={<MUI.Avatar icon={<Person />} />}
-                                    rightIcon={<ActionInfo />}
+                                    rightIcon={mainMenu}
                                     primaryText={user.name}
                                     secondaryText={user.title}
                                     onTouchTap={this.handleDrawerToggle.bind(this,user)}
@@ -76,8 +90,8 @@ export default connect(mapStateToProps,mapDispatchToProps)(Complain);
 
 const styles = {
     donerListContainer: {
-        //marginLeft: 150,
-        //marginRight: 150,
+        marginLeft: 150,
+        marginRight: 150,
         border: 'solid 1px #d9d9d9',
     },
     clear: {

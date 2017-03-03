@@ -5,12 +5,26 @@ import React, { Component } from 'react';
 import * as MUI from 'material-ui';
 import { connect } from 'react-redux'
 import Person from 'material-ui/svg-icons/social/person';
+import FlatButton from 'material-ui/FlatButton';
+const buttonStyle = { width: '100%' , float:'right'};
 
 
 
 class complainDetail extends Component {
     //user-default
     render() {
+
+        const AdminMenu = this.props.auth.user && this.props.auth.user.role == 'admin' ? (
+            <div className='Navbar-Main-Menu'>
+                <FlatButton
+                    label='Process'
+                    style={buttonStyle}
+                />
+                <FlatButton
+                    label='Pending'
+                    style={buttonStyle}
+                />
+            </div>):'';
 
        var complainDetails = this.props.complain.complainDetails;
         console.log(complainDetails);
@@ -27,6 +41,7 @@ class complainDetail extends Component {
                         <div> Description : {complainDetails.des}</div>
                         <div> Details :{complainDetails.details}</div>
                     </MUI.CardText>
+                    <span>{AdminMenu}</span>
                 </MUI.Card>
             </div>
         );
@@ -34,7 +49,9 @@ class complainDetail extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return { complain: state.complainDetailsReducer };
+    return {
+        auth: state.auth,
+        complain: state.complainDetailsReducer };
 };
 
 export default connect(mapStateToProps)(complainDetail);

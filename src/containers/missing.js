@@ -1,7 +1,4 @@
 /**
- * Created by Anonmous on 3/3/2017.
- */
-/**
  * Created by Anonmous on 2/28/2017.
  */
 import React, { Component } from 'react';
@@ -11,6 +8,9 @@ import * as MUI from 'material-ui';
 import ActionInfo from 'material-ui/svg-icons/action/info';
 import Person from 'material-ui/svg-icons/social/person';
 import { browserHistory } from 'react-router';
+const buttonStyle = { width: '100%' , float:'right'};
+import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
+import FlatButton from 'material-ui/FlatButton';
 
 
 
@@ -40,6 +40,16 @@ class Missing extends Component {
     }
 
     render() {
+
+        const mainMenu = (
+            <div className='Navbar-Main-Menu'>
+                <FlatButton
+                    label='submited'
+                    style={buttonStyle}
+                    onClick={() => browserHistory.push('/crime')}
+                />
+            </div>)
+
         return (
             <MUI.List >
                 <MUI.Subheader style={styles.subHeader} inset={false}>Missing List</MUI.Subheader>
@@ -51,7 +61,7 @@ class Missing extends Component {
 
                                 <MUI.ListItem
                                     leftAvatar={<MUI.Avatar icon={<Person />} />}
-                                    rightIcon={<ActionInfo />}
+                                    rightIcon={mainMenu}
                                     primaryText={user.name}
                                     onTouchTap={this.handleDrawerToggle.bind(this,user)}
                                 />
@@ -78,8 +88,8 @@ export default connect(mapStateToProps,mapDispatchToProps)(Missing);
 
 const styles = {
     donerListContainer: {
-        //marginLeft: 150,
-        //marginRight: 150,
+        marginLeft: 150,
+        marginRight: 150,
         border: 'solid 1px #d9d9d9',
     },
     clear: {

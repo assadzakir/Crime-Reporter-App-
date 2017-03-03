@@ -1,7 +1,4 @@
 /**
- * Created by Anonmous on 3/3/2017.
- */
-/**
  * Created by Anonmous on 2/28/2017.
  */
 import React, { Component } from 'react';
@@ -10,7 +7,12 @@ import { authActions,signOut,crimeDetailAction } from '../store/actions/app-acti
 import * as MUI from 'material-ui';
 import ActionInfo from 'material-ui/svg-icons/action/info';
 import Person from 'material-ui/svg-icons/social/person';
-import { browserHistory } from 'react-router';
+import { browserHistory } from 'react-router'
+import RaisedButton from 'material-ui/RaisedButton'
+const buttonStyle = { width: '100%' , float:'right'};
+import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
+import FlatButton from 'material-ui/FlatButton';
+
 
 
 
@@ -39,7 +41,51 @@ class Crime extends Component {
 
     }
 
+
+
     render() {
+
+        const mainMenu = (
+            <div className='Navbar-Main-Menu'>
+                <FlatButton
+                    label='submited'
+                    style={buttonStyle}
+                    onClick={() => browserHistory.push('/crime')}
+                />
+                   </div>
+        );
+
+
+        // const adminMenu = auth.auth.user ? (
+        //         <div className='Navbar-Main-Menu'>
+        //             <FlatButton
+        //                 label='ALL Complaint'
+        //                 style={buttonStyle}
+        //                 onClick={() => browserHistory.push('/complains')}
+        //             />
+        //             <FlatButton
+        //                 label='Crime'
+        //                 style={buttonStyle}
+        //                 onClick={() => browserHistory.push('/crime')}
+        //             />
+        //             <FlatButton
+        //                 label='Missing'
+        //                 style={buttonStyle}
+        //                 onClick={() => browserHistory.push('/missing-person')}
+        //             />
+        //             <FlatButton
+        //                 label='File Report'
+        //                 style={buttonStyle}
+        //                 onClick={() => browserHistory.push('/add-reports')}
+        //             />
+        //             <FlatButton
+        //                 label='LogOut'
+        //                 style={buttonStyle}
+        //                 onClick={this.handleLogin}
+        //             />
+        //         </div>
+        //     ) : mainMenu;
+
         return (
             <MUI.List >
                 <MUI.Subheader style={styles.subHeader} inset={false}>Crime List</MUI.Subheader>
@@ -51,7 +97,7 @@ class Crime extends Component {
 
                                 <MUI.ListItem
                                     leftAvatar={<MUI.Avatar icon={<Person />} />}
-                                    rightIcon={<ActionInfo />}
+                                    rightIcon={mainMenu}
                                     primaryText={user.name}
                                     secondaryText={user.title}
                                     onTouchTap={this.handleDrawerToggle.bind(this,user)}
@@ -64,6 +110,7 @@ class Crime extends Component {
                 }
 
             </MUI.List>
+
         );
     }
 }
@@ -79,8 +126,8 @@ export default connect(mapStateToProps,mapDispatchToProps)(Crime);
 
 const styles = {
     donerListContainer: {
-        //marginLeft: 150,
-        //marginRight: 150,
+        marginLeft: 50,
+        marginRight: 200,
         border: 'solid 1px #d9d9d9',
     },
     clear: {
